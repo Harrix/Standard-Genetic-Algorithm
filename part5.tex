@@ -1,0 +1,127 @@
+\chapter{Описание стандартного генетического алгоритма на бинарных строках}\label{StandardGA:section_binaryGA}
+
+Теперь приступим непосредственно к описанию самого алгоритма $ BinaryGeneticAlgorithm $ согласно схеме, приведенной выше.
+
+
+\begin{algorithm}
+\caption{Алгоритм $ BinaryGeneticAlgorithm $ (Часть 1)} \label{StandardGA:alg:BinaryGeneticAlgorithm}
+\begin{algorithmic}
+\State \textbf{Начало алгоритма}
+\BeginBlock \textbf{\textit{Инициализация популяции:}}
+\State $Population=Initialization\left( X\right) \text{, где } Population=\left\lbrace \bar{x}^1; \bar{x}^2; \ldots; \bar{x}^N \right\rbrace, \bar{x}^i \in X, i=\overline{1,N} $;
+\EndBlock
+\BeginBlock \textbf{\textit{Вычисление функции пригодности индивидов:}}
+\State $Fitness=\left\lbrace f_{fit} \left( \bar{x}^1 \right); f_{fit} \left( \bar{x}^2 \right); \ldots; f_{fit} \left( \bar{x}^N \right) \right\rbrace $;
+\EndBlock
+\BeginBlock \textbf{\textit{Запоминание лучшего индивида и его значение целевой функции:}}
+\State $\overline{Best}=\arg{ \max_{\bar{x} \in Population}{f\left ( \bar{x} \right )} }$;
+\State $BestFitness=\max_{\bar{x} \in Population}{f\left ( \bar{x} \right )}$;
+\EndBlock
+\For{$M-1$ \textbf{раз}}
+\For{\textbf{От }$j=1$ \textbf{до} $N$}
+\BeginBlock \textbf{\textit{Селекция:}}
+\State Выбрать двух родителей:
+\State ${\overline{Parent}}^1=Selection\left( Population, Fitness, DataOfSel\right)$;
+\State ${\overline{Parent}}^2=Selection\left( Population, Fitness, DataOfSel\right)$;
+\State ${\overline{Parent}}^1\in X, {\overline{Parent}}^2\in X$;
+\EndBlock
+\BeginBlock \textbf{\textit{Скрещивание:}}
+\State Получение потомка из родителей:
+\State ${\overline{Child}}^j=Crossover\left({\overline{Parent}}^1,{\overline{Parent}}^2, DataOfCros\right)$;
+\EndBlock
+\EndFor
+\BeginBlock \textbf{\textit{Мутация всех потомков:}}
+\State Получение потомка из родителей:
+\State \textit{Продолжение ниже}
+\algstore{bkbreak}
+
+\end{algorithmic}
+\end{algorithm}
+~\\
+
+\begin{algorithm}
+\caption{Алгоритм $ BinaryGeneticAlgorithm $ (Часть 2)}
+\begin{algorithmic}
+\algrestore{bkbreak}
+\State \textit{Начало выше}
+\State $MutChildPopulation=Mutation(ChildPopulation, DataOfMut),$
+\State где $ChildPopulation=\left\lbrace {\overline{Child}}^1; \ldots; {\overline{Child}}^N\right\rbrace $, ${\overline{Child}}^i \in X$, $i=\overline{1,N}$;
+\State $MutChildPopulation=\left\lbrace {\overline{MutChild}}^1; \ldots; {\overline{MutChild}}^N\right\rbrace $, ${\overline{MutChild}}^i \in X$, $i=\overline{1,N}$;
+\EndBlock
+\BeginBlock \textbf{\textit{Вычисление функции пригодности индивидов:}}
+\State $FitnessOfMutChild=\left\lbrace f_{fit} \left( \overline{MutChild}^1 \right); f_{fit} \left( \overline{MutChild}^2 \right); \ldots; f_{fit} \left( \overline{MutChild}^N \right) \right\rbrace $;
+\EndBlock
+\BeginBlock \textbf{\textit{Запоминание лучшего индивида и его значение целевой функции:}}
+\State \parbox[t]{\dimexpr\linewidth-\algorithmicindent-\algorithmicindent}{Если есть потомок лучше сохраненного лучшего индивида $\overline{Best}$, то заменяем его новым индивидом с его значением целевой функции:\strut}
+\State $\overline{Best}=\arg{ \max_{\bar{x} \in MutChildPopulation \cup \overline{Best}}{f\left ( \bar{x} \right )} }$;
+\State $BestFitness=\max_{\bar{x} \in MutChildPopulation \cup \overline{Best}}{f\left ( \bar{x} \right )}$;
+\EndBlock
+\BeginBlock \textbf{\textit{Формирование нового поколения:}}
+\State \parbox[t]{\dimexpr\linewidth-\algorithmicindent-\algorithmicindent}{Из потомков и родителей формируется новое поколение, которое заменяет предыдущее поколение:\strut}
+\State $\left( \begin{array}{c} NewPopulation \\ NewFitness \end{array}\right)=Forming\left( \begin{array}{c} Population \\ MutChildPopulation \\ Fitness \\ FitnessOfMutChild \\ DataOfForm \end{array}\right)$;
+\State $Population=NewPopulation$;
+\State $Fitness=NewFitness$;
+\EndBlock
+\EndFor
+\BeginBlock \textbf{\textit{Выдаем лучшего индивида и его значение целевой функции:}}
+\State \Return пару $\left( \begin{array}{c} \overline{Best} \\ BestFitness \end{array}\right)$. 
+\EndBlock
+
+\State \textbf{Конец алгоритма}
+\end{algorithmic}
+\end{algorithm}
+
+Здесь,
+
+$N$ --- размер популяции,
+
+$M$ --- число поколений,
+
+$ DataOfSel $ --- вектор параметров оператора селекции,
+
+$ DataOfCros $ --- вектор параметров оператора скрещивания,
+
+$ DataOfMut $ --- вектор параметров оператора мутации,
+
+$ DataOfForm $ --- вектор параметров оператора формирования нового поколения.
+
+При решении задачи нам известно количество вычислений целевой функции $ CountOfFitness $, которые мы можем реализовать. Данная величина определяется по затратам по вычислениям целевой функции в одной точке, временными ограничениями, экономической целесообразностью и другими причинами.
+
+Вышеописанные переменные являются параметрами генетического алгоритма, варьируя которые мы получаем разные по эффективности реализации ГА. Во всех векторах параметров операторов главным параметром является тип данного оператора, так как существует несколько реализаций каждого из операторов.
+
+При этом в сГА на бинарных строках число поколений и размер популяции берутся в таком соотношении, чтобы они были приблизительно одинаковыми. В таком случае мы можем исключить параметры $ M $ и $ N $ из числа определяемых пользователем, воспользовавшись формулой:
+
+\begin{equation}
+\label{StandardGA:eq:countM}
+M=int \left( \sqrt{CountOfFitness}\right),
+\end{equation}
+\begin{equation*}
+N=int \left( \dfrac{CountOfFitness}{M}\right).
+\end{equation*}
+
+Итак, определим вектор всех изменяемых параметров стандартного генетического алгоритма на бинарных строках:
+
+\begin{equation}
+\label{StandardGA:eq:ParametersOfBinaryGA}
+ParametersOfBinaryGA=  \left( \begin{array}{c} CountOfFitness \\ DataOfSel \\ DataOfCros \\ DataOfMut \\ DataOfForm \end{array}\right).
+\end{equation}
+
+\textbf{Замечание.} В литературе часто в качестве критерия остановки алгоритма используется не число вычислений функции $ CountOfFitness $, а время работы алгоритма или достижение заданной точности задачи или самого алгоритма.
+
+Если взять в качестве критерия время работы алгоритма, то исследования по сравнению алгоритмов будут жестко привязаны к компьютерам, на которых проводились вычисления. При этом критерий будет характеризовать скорее ЭВМ, чем алгоритм, и результаты будет сложно проверить другими исследователями. Следует помнить, что часто в практических задачах основное время работы занимает вычисление целевой функции, а не работы самого алгоритма, которое пренебрежительно мало.
+
+Если же взять в качестве критерия остановки достижение заданной точности алгоритмом (например, $ K $ поколений проходят без улучшения наилучшего решения $ \overline{Best} $), то сравнивать между собой можно только эволюционные алгоритмы, так как данный критерий не приемлем для других алгоритмов глобальной оптимизации.
+
+Использование в качестве критерия остановки достижение заданной точности задачи (например, расстояние до точки глобального оптимума) не содержит каких либо явных противоречий при исследованиях различных алгоритмов, но в данной работе не рассматривается.
+
+\textbf{Замечание.} Число вычислений функций $ CountOfFitness $ желательно выбирать из квадратов целых чисел: $ 50^2 $, $ 100^2 $ и т.~д. Иначе настоящее число вычислений целевой функции будет меньше, чем $ CountOfFitness $.
+
+\textbf{Замечание.} $ Population $, $ MutChildPopulation $, $ ChildPopulation $ не являются подмножествами множества $ X $, так как могут содержать одинаковые элементы, что противоречит определению подмножества.
+
+\textbf{Замечание.} В главном цикле алгоритма число повторений равно $ M-1 $, так как первые $ M $ вычислений функции пригодности приходится на вычисление пригодности индивидов после инициализации популяции.
+
+\textbf{Замечание.} При реализации алгоритма следует следить, чтобы число вычислений целевой функции равнялось $ CountOfFitness $. Часто встречаются реализации ГА, в которых целевая функция одного и того же индивида просчитывается несколько раз. Например, в схеме алгоритма для операторов селекции используется значения $ f_{fit} \left( \bar{x} \right)  $, а при запоминании $ BestFitness $ используется значение $ f\left( \bar{x} \right) $. Иногда пересчитывают целевую функцию для определения как $ BestFitness $  так и $ f_{fit} \left( \bar{x} \right)  $ (трехкратное увеличение вычислений целевой функции). Рекомендуется хранить два массива: один для значений $ f\left( \bar{x} \right) $, другой для $ f_{fit} \left( \bar{x} \right)  $, значения которого рассчитываются через первый массив. Данное замечание не касается модификации ГА, использующее хранение значение целевой функции для всех уже просчитанных индивидов, в которой прежде чем считать значение целевой функции индивид проверяют по базе.
+
+\textbf{Замечание.} При запоминании лучшего индивида $ \overline{Best} $ и его значение функции пригодности в случае наступления ситуации, когда в популяции есть индивид с равной пригодностью, что и $ \overline{Best} $, не нужно замещать $ \overline{Best} $ этим индивидом. Замещение происходит только в случае, когда находится индивид с лучшей, чем у $ \overline{Best} $, пригодностью.
+
+\clearpage

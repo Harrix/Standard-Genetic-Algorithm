@@ -1,0 +1,207 @@
+\chapter{Решение задачи оптимизации на вещественных строках с помощью сГА}\label{StandardGA:section_realga}
+
+До данной главы рассматривался стандартный генетический алгоритм на бинарных строках, который является составной частью сГА $ GeneticAlgorithm $. В случае, когда решается задача вещественной оптимизации, добавляются операторы преобразования задачи вещественной оптимизации в задачу бинарной оптимизации ($ ConvertingIntoBinaryGA $) и преобразования бинарного решения в вещественное ($ BinaryToReal $) (Алгоритм \ref{StandardGA:alg:GeneticAlgorithm}). При этом к вектору параметров сГА добавляется блок $ ParametersOfConvertingIntoBinaryGA $.
+
+Существует различные реализации данных операторов. В Стандарте рассматривается два из них:
+\begin{itemize}
+\item стандартное представление целого числа --- номер узла в сетке дискретизации;
+\item стандартный рефлексивный Грей-код.
+\end{itemize}
+
+Применяемый тип определяется параметром $ TypeOfConverting $ из $ ParametersOfConvertingIntoBinaryGA $.
+
+Итак,  имеем:
+\begin{itemize}
+\item пространство поиска $ X $, где $ \bar{x} \in X $, $ \bar{x}={\left( x_1;x_2;\ldots;x_n\right)}^\mathrm{T}  $, $ x_i \in \left[  Left_i, Right_i\right] $, $ i=\overline{1,n} $;
+\item ограничения задачи оптимизации $ g_i\left(\bar{x} \right)\leq 0 \left( i=\overline{1,m_1}\right) $, $ h_j\left(\bar{x} \right)= 0 \left( j=\overline{1,m_2}\right) $;
+\item целевую функцию $ f\left( \bar{x}\right)  $;
+\end{itemize}
+
+Необходимо произвести с этими данными преобразования.
+
+\section{Стандартное представление целого числа --- номер узла в сетке дискретизации} \label{StandardGA:subsection_IntConverting}
+\begin{equation}
+\label{StandardGA:eq:IntConverting}
+TypeOfConverting =IntConverting.
+\end{equation}
+
+Классическая схема, в которой каждая координата $ \bar{x}_i $ вектора $ \bar{x} $ дискретизируется на определенное число интервалов. Каждой точке на оси ставится в соответствие целое неотрицательное число --- номер узла в сетке дискретизации (начиная с нуля). Данное целое число кодируется в бинарную строку, длина которой равна наименьшей степени $ Length_i $ двойки  при которой число $ 2^{Length_i}\geq NumberOfParts_i+1 $. Этот процесс осуществляется для всех компонент вектора $ \bar{x} $. Итоговая бинарная строка, участвующая в сГА на бинарных строках, получается путем склейки бинарных строк всех компонент вектора.
+
+Распишем алгоритм преобразования задачи $ ConvertingIntoBinaryGA $ (Алгоритм  \ref{StandardGA:alg:ConvertingIntoBinaryGA}).
+
+\begin{algorithm}
+\caption{Алгоритм $ ConvertingIntoBinaryGA $: стандартное представление целого числа --- номер узла в сетке дискретизации}\label{StandardGA:alg:ConvertingIntoBinaryGA}
+\begin{algorithmic}
+
+\State \textbf{Начало алгоритма}
+
+\State Рассчитаем необходимую длину каждой бинарной строки для каждой компоненты вектора $ \bar{x}\in X $:
+\State $ Length_i= $
+\BeginBlock
+\State $ S=1, L=0 $;
+\While {$S<NumberOfParts_i+1$}
+\State $ S=S\cdot 2 $;
+\State $ L=L+1 $;
+\EndWhile
+\State \Return $ L $;
+\EndBlock
+\State Определим множество $ X_B $, как множество бинарных векторов $ \bar{x}_B $ длины:  
+\State $ n_B=\sum_{i=1}^{n} Length_i$
+\State Рассчитаем шаг дискретизации для каждой компоненты вектора  $ \bar{x} \in X $:  
+\State $ h_i=\dfrac{\left| Left_i-Right_i\right| }{2^{Length_i}} $;
+\State Получим целевую функцию задачи бинарной оптимизации:
+\State $ f_B\left( \bar{x}_B\right)=f\left( \bar{x}\right) $, где
+\State $ \bar{x}_i=h_i \sum_{j=1}^{Length_i} \left( 2^{j-1}\cdot {\left( \bar{x}_B\right) }_{Begin_i+j} \right)+Left_i $,
+\State $ Begin_i =\sum_{j=1}^{i-1}Length_j $, $ i=\overline{1,n} $;
+\State Аналогично получим ограничения-неравенства для задачи бинарной оптимизации:
+\State $ {g_j}_B\left( \bar{x}_B\right)=g_j\left( \bar{x}\right) $, где
+\State $ \bar{x}_i=h_i \sum_{k=1}^{Length_i} \left( 2^{k-1}\cdot {\left( \bar{x}_B\right) }_{Begin_i+k} \right)+Left_i $,
+\State $ Begin_i =\sum_{k=1}^{i-1}Length_k $, $ i=\overline{1,n} $, $ j=\overline{1,m_1} $;
+\State Аналогично получим ограничения-равенства для задачи бинарной оптимизации:
+\State $ {h_j}_B\left( \bar{x}_B\right)=g_j\left( \bar{x}\right) $, где
+\State $ \bar{x}_i=h_i \sum_{k=1}^{Length_i} \left( 2^{k-1}\cdot {\left( \bar{x}_B\right) }_{Begin_i+k} \right)+Left_i $,
+\State $ Begin_i =\sum_{k=1}^{i-1}Length_k $, $ i=\overline{1,n} $, $ j=\overline{1,m_2} $;
+\State \Return $ \left( 
+\begin{array}{c}
+X_B\\f_B\left( \bar{x}_B\right)\\{g_j}_B\left( \bar{x}_B\right)\\{h_j}_B\left( \bar{x}_B\right)\\ParametersOfBinaryGA
+\end{array}
+\right)  $
+\State \textbf{Конец алгоритма}
+\end{algorithmic}
+\end{algorithm}
+
+Алгоритм \ref{StandardGA:alg:ConvertingIntoBinaryGA} использует следующие обозначения:
+
+$NumberOfParts_i  $ ($ i=\overline{1,n}) $ --- число интервалов, на которые предполагается разбивать каждую компоненту вектора $ \bar{x}$ в пределах своего изменения. В большинстве своем настоящее число интервалов будет получаться больше, чем запланировано;
+
+$ Begin_i $ --- номер элемента (гена) бинарной строки $ \bar{x}_B $, с которого начинают идти гены, кодирующую $ i $ компоненту вектора $ \bar{x} $, ($ i=\overline{1,n} $).
+
+$NumberOfParts_i \in ParametersOfConvertingIntoBinaryGA $, $i=\overline{1,n}$.
+
+Аналогично приведенному методу преобразования бинарного решения в действительное (Алгоритм \ref{StandardGA:alg:ConvertingIntoBinaryGA}) получим формулу для оператора $ BinaryToReal $:
+
+\begin{align}
+\label{StandardGA:eq:BinaryToReal}
+&BinaryToReal\left( \begin{array}{c}\bar{x}{{}_{submax}}_B \\f\left(\bar{x} \right)_B \\ParametersOfConvertingIntoBinaryGA
+\end{array}\right) =\left( \begin{array}{c}\bar{x}_{submax} \\f\left(\bar{x}_{submax} \right)
+\end{array}\right),&\text{где } \\
+&\bar{x}_i=h_i \sum_{j=1}^{Length_i} \left( 2^{j-1}\cdot {\left( \bar{x}_B\right) }_{Begin_i+j} \right)+Left_i,\nonumber \\
+& Begin_i =\sum_{j=1}^{i-1}Length_j, i=\overline{1,n}.\nonumber
+\end{align}
+
+\textbf{Замечание.} При программировании оператора $ BinaryToReal $ не следует заново вычислять значение целевой функции --- следует использовать то значение, которое вычислялось при работе сГА на бинарных строках.
+
+\textbf{Замечание.} При реализации генетического алгоритма операция кодирования вещественного числа в бинарную строку не требуется в отличие от операции декодирования.
+
+\textbf{Замечание.} Существует схема, когда итоговая бинарная строка, участвующая в сГА на бинарных строках, получается не путем склейки бинарных строк всех компонент вещественного вектора $\bar{x}$, а путем покомпонентной склейки: вначале идут первые биты всех компонент вектора  $\bar{x}$, потом вторых и т.~д. В Стандарте он не рассматривается.
+
+\textbf{Замечание.} Мы используем число $ NumberOfParts_i+1 $ для определения длины бинарной строки для кодирования каждой координаты, а не $ NumberOfParts_i $ ($i=\overline{1,n}$), так как число точек больше интервалов, на которые мы разбиваем диапазон изменения вещественной координаты, на $ 1 $.
+
+\section{Стандартный рефлексивный Грей-код} \label{StandardGA:subsection_GrayCodeConverting}
+\begin{equation}
+\label{StandardGA:eq:GrayCodeConverting}
+TypOfConverting =GrayCodeConverting.
+\end{equation}
+
+Так же, как в предыдущей схеме, каждая координата вектора $ \bar{x} $ дискретизируется на определенное число интервалов. Каждой точке на оси ставится в соответствие целое неотрицательное число --- номер узла в сетке дискретизации (начиная с нуля). Данное целое число кодируется в бинарную строку, длина которой равна наименьшей степени двойки степени $ Length_i $ двойки  при которой число $ 2^{Length_i}\geq NumberOfParts_i+1 $. Этот процесс осуществляется для всех компонент вектора $ \bar{x} $. Итоговая бинарная строка, участвующая в сГА на бинарных строках, получается путем склейки бинарных строк всех компонент вектора. Всё то же самое.
+
+Единственное отличие существует на этапе кодирования целого числа в бинарную строку. Бинарная строка не представляет собой двоичный код целого числа, а представляет код Грея. Его отличительной особенностью является то, что если два целых числа отличаются на единицу, то их коды Грея также будут отличаться только одним битом \cite{web:GrayCode}. Двоичный код не обладает данным свойством.
+
+Существует метод по переводу кода Грея в двоичный код: старший разряд (крайний левый бит) записывается без изменения, каждый следующий символ кода Грея нужно инвертировать, если в двоичном коде перед этим была получена «$ 1 $», и оставить без изменения, если в двоичном коде был получен «0». Например \cite{web:OptimalCoding}, дан код Грея $ a=1101 $ целого числа $ x=9 $. Двоичный код после преобразований: $ {a}'=1001 $, что является двоичным представлением числа $ 9 $.
+
+Благодаря этому методу мы можем операторы $ ConvertingIntoBinaryGA $ и $ BinaryToReal $ почти не изменять, а только добавить операцию по переводу бинарной строки из кода Грея в двоичный код.
+
+Распишем алгоритм преобразования задачи вещественной оптимизации $ ConvertingIntoBinaryGA $ (Алгоритм  \ref{StandardGA:alg:ConvertingIntoBinaryGAGray}):
+
+\begin{algorithm}
+\caption{Алгоритм $ ConvertingIntoBinaryGAGray $: стандартный рефлексивный Грей-код (I часть)}\label{StandardGA:alg:ConvertingIntoBinaryGAGray}
+\begin{algorithmic}
+
+\State \textbf{Начало алгоритма}
+
+\State Рассчитаем необходимую длину каждой бинарной строки для каждой компоненты вектора $ \bar{x}\in X $:
+\State $ Length_i= $
+\BeginBlock
+\State $ S=1, L=0 $;
+\While {$S<NumberOfParts_i+1$}
+\State $ S=S\cdot 2 $;
+\State $ L=L+1 $;
+\EndWhile
+\State \Return $ L $;
+\EndBlock
+\State Определим множество $ X_B $, как множество бинарных векторов $ \bar{x}_B $ длины:  
+\State $ n_B=\sum_{i=1}^{n}Length_i $
+\State Рассчитаем шаг дискретизации для каждой компоненты вектора  $ \bar{x} \in X $:  
+\State $ h_i=\dfrac{\left| Left_i-Right_i\right| }{2^{Length_i}} $;
+\State Получим целевую функцию задачи бинарной оптимизации:
+\State $ f_B\left( \bar{x}_B\right)=f\left( \bar{x}\right) $, где
+\State $ \bar{x}_i=h_i \sum_{j=1}^{Length_i} \left( 2^{j-1}\cdot {\left( \bar{x}_{BG}\right) }_{Begin_i+j} \right)+Left_i $,
+\State $ Begin_i =\sum_{j=1}^{i-1}Length_j $, $ i=\overline{1,n} $,
+\State $ {\left( \bar{x}_{BG}\right) }_{Begin_i+j} = \left\lbrace \begin{aligned}
+{\left( \bar{x}_{B}\right) }_{Begin_i+j}&\text{, если } j=1; \\ {\left( \bar{x}_{B}\right) }_{Begin_i+j}&\text{, если } j\neq 1 \text{ и } {\left( \bar{x}_{B}\right) }_{Begin_i+j-1}=0; \\1-{\left( \bar{x}_{B}\right) }_{Begin_i+j}&\text{, если } j\neq 1 \text{ и } {\left( \bar{x}_{B}\right) }_{Begin_i+j-1}=1; 
+\end{aligned}\right.$
+\State $i=\overline{1,n} ;$
+\State \textit{Продолжение ниже}
+  \algstore{bkbreak}
+ 
+  \end{algorithmic}
+\end{algorithm}
+
+~\\
+
+\begin{algorithm}
+\caption{Алгоритм $ ConvertingIntoBinaryGAGray $: стандартный рефлексивный Грей-код (II часть)}
+\begin{algorithmic}
+
+\algrestore{bkbreak}
+\State \textit{Начало выше}
+
+\State Аналогично получим ограничения-неравенства для задачи бинарной оптимизации:
+\State $ {g_j}_B\left( \bar{x}_B\right)=g_j\left( \bar{x}\right) $, где
+\State $ \bar{x}_i=h_i \sum_{k=1}^{Length_i} \left( 2^{k-1}\cdot {\left( \bar{x}_{BG}\right) }_{Begin_i+k} \right)+Left_i $,
+\State $ Begin_i =\sum_{k=1}^{i-1}Length_k $, $ i=\overline{1,n} $, $ j=\overline{1,m_1} $,
+\State $ {\left( \bar{x}_{BG}\right) }_{Begin_i+j} = \left\lbrace \begin{aligned}
+{\left( \bar{x}_{B}\right) }_{Begin_i+j}&\text{, если } j=1; \\ {\left( \bar{x}_{B}\right) }_{Begin_i+j}&\text{, если } j\neq 1 \text{ и } {\left( \bar{x}_{B}\right) }_{Begin_i+j-1}=0; \\1-{\left( \bar{x}_{B}\right) }_{Begin_i+j}&\text{, если } j\neq 1 \text{ и } {\left( \bar{x}_{B}\right) }_{Begin_i+j-1}=1; 
+\end{aligned}\right.$
+\State $i=\overline{1,n} ;$
+\State Аналогично получим ограничения-равенства для задачи бинарной оптимизации:
+\State $ {h_j}_B\left( \bar{x}_B\right)=g_j\left( \bar{x}\right) $, где
+\State $ \bar{x}_i=h_i \sum_{k=1}^{Length_i} \left( 2^{k-1}\cdot {\left( \bar{x}_{BG}\right) }_{Begin_i+k} \right)+Left_i $,
+\State $ Begin_i =\sum_{k=1}^{i-1}Length_k $, $ i=\overline{1,n} $, $ j=\overline{1,m_2} $,
+\State $ {\left( \bar{x}_{BG}\right) }_{Begin_i+j} = \left\lbrace \begin{aligned}
+{\left( \bar{x}_{B}\right) }_{Begin_i+j}&\text{, если } j=1; \\ {\left( \bar{x}_{B}\right) }_{Begin_i+j}&\text{, если } j\neq 1 \text{ и } {\left( \bar{x}_{B}\right) }_{Begin_i+j-1}=0; \\1-{\left( \bar{x}_{B}\right) }_{Begin_i+j}&\text{, если } j\neq 1 \text{ и } {\left( \bar{x}_{B}\right) }_{Begin_i+j-1}=1; 
+\end{aligned}\right.$
+\State $i=\overline{1,n} ;$
+\State \Return $ \left( 
+\begin{array}{c}
+X_B\\f_B\left( \bar{x}_B\right)\\{g_j}_B\left( \bar{x}_B\right)\\{h_j}_B\left( \bar{x}_B\right)\\ParametersOfBinaryGA
+\end{array}
+\right)  $
+\State \textbf{Конец алгоритма}
+\end{algorithmic}
+\end{algorithm}
+
+Здесь (Алгоритм \ref{StandardGA:alg:ConvertingIntoBinaryGAGray}) следующие обозначения:
+
+$NumberOfParts_i  $ ($ i=\overline{1,n}) $--- число интервалов, на которые предполагается разбивать каждую компоненту вектора $ \bar{x}$ в пределах своего изменения. В большинстве своем настоящее число интервалов будет получаться больше, чем запланировано;
+
+$ Begin_i $ --- номер элемента (гена) бинарной строки $ \bar{x}_B $, с которого начинают идти гены, кодирующую $ i $ компоненту вектора $ \bar{x} $, ($ i=\overline{1,n} $).
+
+$NumberOfParts_i \in ParametersOfConvertingIntoBinaryGA $, $i=\overline{1,n}$.
+
+Аналогично приведенному методу преобразования бинарного решения в действительное (Алгоритм \ref{StandardGA:alg:ConvertingIntoBinaryGAGray}) получим формулу для оператора $ BinaryToReal $:
+
+\begin{align}
+\label{StandardGA:eq:BinaryToRealGray}
+&BinaryToReal\left( \begin{array}{c}\bar{x}{{}_submax}_B \\f\left(\bar{x} \right)_B \\ParametersOfConvertingIntoBinaryGA
+\end{array}\right) =\left( \begin{array}{c}\bar{x}_{submax} \\f\left(\bar{x}_{submax} \right)
+\end{array}\right),&\text{где } \\
+&\bar{x}_i=h_i \sum_{j=1}^{Length_i} \left( 2^{j-1}\cdot {\left( \bar{x}_{BG}\right) }_{Begin_i+j} \right)+Left_i,\nonumber \\
+& Begin_i =\sum_{j=1}^{i-1}Length_j, i=\overline{1,n},\nonumber\\
+& {\left( \bar{x}_{BG}\right) }_{Begin_i+j} = \left\lbrace \begin{aligned}
+{\left( \bar{x}_{B}\right) }_{Begin_i+j}&\text{, если } j=1; \\ {\left( \bar{x}_{B}\right) }_{Begin_i+j}&\text{, если } j\neq 1 \text{ и } {\left( \bar{x}_{B}\right) }_{Begin_i+j-1}=0; \\1-{\left( \bar{x}_{B}\right) }_{Begin_i+j}&\text{, если } j\neq 1 \text{ и } {\left( \bar{x}_{B}\right) }_{Begin_i+j-1}=1; 
+\end{aligned}\right.\nonumber\\
+& i=\overline{1,n}.\nonumber
+\end{align}
+
+\clearpage
