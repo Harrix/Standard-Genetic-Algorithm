@@ -180,3 +180,15 @@ literate={Ö}{{\"O}}1
 %%% Формулы %%%
 %Дублирование символа при переносе
 \newcommand{\hm}[1]{#1\nobreak\discretionary{}{\hbox{\ensuremath{#1}}}{}}
+
+%%% Таблицы %%%
+% Раздвигаем в таблице без границ отступы между строками вновой команде
+\newenvironment{tabularwide}%
+{\setlength{\extrarowheight}{0.3cm}\begin{tabular*}{\linewidth}{@{}p{17em}l}}{\end{tabular*}}
+% Многострочная ячейка в таблице
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[t]{@{}l@{}}#2\end{tabular}}
+  
+%%% Абзацы %%
+% Отсупы между строками
+\singlespacing

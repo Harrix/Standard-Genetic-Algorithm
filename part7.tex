@@ -29,10 +29,11 @@ TypeOfConverting =IntConverting.
 
 Распишем алгоритм преобразования задачи $ ConvertingIntoBinaryGA $ (Алгоритм  \ref{StandardGA:alg:ConvertingIntoBinaryGA}).
 
+
 \begin{algorithm}
 \caption{Алгоритм $ ConvertingIntoBinaryGA $: стандартное представление целого числа --- номер узла в сетке дискретизации}\label{StandardGA:alg:ConvertingIntoBinaryGA}
 \begin{algorithmic}
-
+\setstretch{0.9}
 \State \textbf{Начало алгоритма}
 
 \State Рассчитаем необходимую длину каждой бинарной строки для каждой компоненты вектора $ \bar{x}\in X $:
@@ -69,6 +70,7 @@ X_B\\f_B\left( \bar{x}_B\right)\\{g_j}_B\left( \bar{x}_B\right)\\{h_j}_B\left( \
 \State \textbf{Конец алгоритма}
 \end{algorithmic}
 \end{algorithm}
+\singlespacing
 
 Алгоритм \ref{StandardGA:alg:ConvertingIntoBinaryGA} использует следующие обозначения:
 
@@ -116,7 +118,6 @@ TypOfConverting =GrayCodeConverting.
 \begin{algorithm}
 \caption{Алгоритм $ ConvertingIntoBinaryGAGray $: стандартный рефлексивный Грей-код (I часть)}\label{StandardGA:alg:ConvertingIntoBinaryGAGray}
 \begin{algorithmic}
-
 \State \textbf{Начало алгоритма}
 
 \State Рассчитаем необходимую длину каждой бинарной строки для каждой компоненты вектора $ \bar{x}\in X $:
@@ -146,7 +147,7 @@ TypOfConverting =GrayCodeConverting.
  
   \end{algorithmic}
 \end{algorithm}
-
+\singlespacing
 ~\\
 
 \begin{algorithm}
