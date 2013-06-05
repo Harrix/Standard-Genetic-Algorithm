@@ -22,7 +22,7 @@ https://github.com/Harrix/Standard-Genetic-Algorithm
 
 Файл **_Standard-Genetic-Algorithm.pdf** - это непосредственно сам документ "Генетический алгоритм. Стандарт. v.3.4".
 
-Сведения для редактирования _HarrixTestFunctions.tex
+Сведения для редактирования _Standard-Genetic-Algorithm.tex
 ---------------
 
 Для полноценной работы редактированию LaTeX документа вам потребуются программа для компиляции *.tex документов в *.pdf для формирования справочных материалов. Автор использует для этого связку MiKTex и TeXstudio. 
