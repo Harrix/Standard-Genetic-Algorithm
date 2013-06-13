@@ -149,13 +149,13 @@ TypeOfSelection=RankSelection.
 
 \begin{equation}
 \label{StandardGA:eq:RankSelection2}
-Selection\left( Population, Fitness, DataOfSel\right) = Random\left( \left\lbrace\bar{x}^i | p^i \right\rbrace \right)
+Selection\left( Population, Fitness, DataOfSel\right) = Random\left( \left\lbrace\bar{x}^i | p^i \right\rbrace \right),
 \end{equation}
 \begin{equation}
-p^i=\dfrac{Rank\left( f_{fit}\left( \bar{x}^i\right)\right)  }{\sum_{j=1}^N{Rank\left( f_{fit}\left( \bar{x}^j\right)\right)}}
+p^i=\dfrac{Rank\left( f_{fit}\left( \bar{x}^i\right)\right)  }{\sum_{j=1}^N{Rank\left( f_{fit}\left( \bar{x}^j\right)\right)}},
 \end{equation}
 \begin{equation}\label{StandardGA:eq:Rank}
-Rank\left( f_{fit}\left( \bar{x}^i\right)\right)=\dfrac{\sum_{j=1}^{N}{NumberOfSorting\left( f_{fit}\left( \bar{x}^i\right), Fitness\right)  \cdot S\left(  f_{fit}\left( \bar{x}^i\right),  f_{fit}\left( \bar{x}^j\right)\right) }}{\sum_{j=1}^{N}{S\left(  f_{fit}\left( \bar{x}^i\right),  f_{fit}\left( \bar{x}^j\right)\right) }}
+Rank\left( f_{fit}\left( \bar{x}^i\right)\right)=\dfrac{\sum_{j=1}^{N}{NumberOfSorting\left( f_{fit}\left( \bar{x}^i\right), Fitness\right)  \cdot S\left(  f_{fit}\left( \bar{x}^i\right),  f_{fit}\left( \bar{x}^j\right)\right) }}{\sum_{j=1}^{N}{S\left(  f_{fit}\left( \bar{x}^i\right),  f_{fit}\left( \bar{x}^j\right)\right) }},
 \end{equation}
 \begin{equation}
 S\left(  f_{fit}\left( \bar{x}^i\right),  f_{fit}\left( \bar{x}^j\right)\right)= \left\lbrace \begin{array}{l}
