@@ -92,4 +92,27 @@ h_i&\leq&\frac{\varepsilon}{10};\nonumber\\
 
 \textbf{Замечание.} Когда мы рассматривали сГА как некий оператор (3.1), в его входных параметрах нигде не упоминается $ n $ --- длина вектора $ \bar{x} $, $ Left_i $ и $ Right_i $ ($ i=\overline{1,n} $) --- границы изменения компонент $ \bar{x} $, если решается задача вещественной оптимизации. Это связано с тем, что данная информация заключена во входном параметре $ X $ --- множестве всех возможных решений. Но при программировании лучше передавать только эти характеристики множества $ X $, а не само всё множество.
 
+\textbf{Замечание.} При проведении исследований эффективности сГА и других алгоритмов на его основе, в качестве параметров алгоритма удобнее прописывать полные их наименования, а не те буквенные обозначения, которые приняты в данном документе. Это будет удобнее для анализа данных другими исследователями, которые не читали данный документ. Автором используется формат \textbf{Harrix Optimization Testing} (\href{https://github.com/Harrix/HarrixFileFormats}{https://github.com/Harrix/HarrixFileFormats}) для проведения исследований. И в них приняты следующие обозначения:
+\begin{eqnarray}
+\label{StandardGA:eq:ParametersOfRus}
+CountOfFitness& = &\text{\textit{Максимальное допустимое число}}\\
+& &\text{\textit{вычислений целевой функции}};\nonumber\\
+TypeOfSel& = &\text{\textit{Тип селекции}};\nonumber\\
+TypeOfCros& = &\text{\textit{Тип скрещивания}};\nonumber\\
+TypeOfMutation& = &\text{\textit{Тип мутации}};\nonumber\\
+TypeOfForm& = &\text{\textit{Тип формирования нового поколения}};\nonumber\\
+ProportionalSelection& = &\text{\textit{Пропорциональная селекция}};\nonumber\\
+RankSelection& = &\text{\textit{Ранговая селекция}};\nonumber\\
+TournamentSelection& = &\text{\textit{Турнирная селекция}};\nonumber\\
+SinglepointCrossover& = &\text{\textit{Одноточечное скрещивание}};\nonumber\\
+TwopointCrossover& = &\text{\textit{Двуточечное скрещивание}};\nonumber\\
+UniformCrossover& = &\text{\textit{Равномерное скрещивание}};\nonumber\\
+Weak& = &\text{\textit{Слабая мутация}};\nonumber\\
+Average& = &\text{\textit{Средняя мутация}};\nonumber\\
+Strong& = &\text{\textit{Сильная мутация}};\nonumber\\
+OnlyOffspringGenerationForming& = &\text{\textit{Только потомки}};\nonumber\\
+OnlyOffspringWithBestGenerationForming& = &\text{\textit{Только потомки и копия лучшего индивида}};\nonumber
+\end{eqnarray}
+
+
 \clearpage
