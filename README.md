@@ -7,7 +7,7 @@ Standard-Genetic-Algorithm
 
 https://github.com/Harrix/Standard-Genetic-Algorithm
 
-Файл распространяется по лицензии Apache License, Version 2.0.
+Файл распространяется по лицензии [Apache License, Version 2.0](../master/LICENSE.txt).
 
 Сам стандарт находится в файле [**_Standard-Genetic-Algorithm.pdf**](../master/_Standard-Genetic-Algorithm.pdf).
 
