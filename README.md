@@ -26,7 +26,7 @@ https://github.com/Harrix/Standard-Genetic-Algorithm
 
 В папке [**images**](../master/images) находятся служебные рисунки для отображения в этом файле.
 
-Скриншот схем из документа
+Скриншот страниц документа
 --------------------------
 
 ![alt text](../master/images/contents.png "Оглавление")
