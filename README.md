@@ -16,13 +16,22 @@ https://github.com/Harrix/Standard-Genetic-Algorithm
 Про структуру проекта
 ---------------------
 
-В корневой папке находятся две папки. 
+Файл [**_Standard-Genetic-Algorithm.pdf**](../master/_Standard-Genetic-Algorithm.pdf) - это непосредственно сам документ "Генетический алгоритм. Стандарт".
+
+В корневой папке находятся три папки. 
 
 В папке [**Source**](../master/Source) располагаются файлы непосредственно документа, где находится файл [**_Standard-Genetic-Algorithm.tex**](../master/Source/_Standard-Genetic-Algorithm.tex) (это исходник pdf документа) и файлы, которые являются вызываемыми или вспомогательными для [**_Standard-Genetic-Algorithm.tex**](../master/Source/_Standard-Genetic-Algorithm.tex).
 
 В папке [**WorkingFiles**](../master/WorkingFiles) располагаются исходники рисунков из папки [**images**](../master/Source/images) для документа. 
 
-Файл [**_Standard-Genetic-Algorithm.pdf**](../master/_Standard-Genetic-Algorithm.pdf) - это непосредственно сам документ "Генетический алгоритм. Стандарт".
+В папке [**images**](../master/images) находятся служебные рисунки для отображения в этом файле.
+
+Скриншот схем из документа
+--------------------------
+
+![alt text](../master/images/contents.png "Оглавление")
+
+![alt text](../master/images/scheme.png "Схема работы ГА]")
 
 Сведения для редактирования файлов
 ----------------------------------
