@@ -1,6 +1,10 @@
 Standard-Genetic-Algorithm
 ==========================
 
+3.8
+---
+ * Исправлено название организации СибГАУ.
+
 3.7
 ---
  * Добавлена ссылка на https://github.com/Harrix/HarrixDataOfOptimizationTesting
