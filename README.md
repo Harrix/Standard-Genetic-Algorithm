@@ -5,11 +5,11 @@ Standard-Genetic-Algorithm
 
 Генетический алгоритм. Стандарт.
 
-https://github.com/Harrix/Standard-Genetic-Algorithm
+[https://github.com/Harrix/Standard-Genetic-Algorithm](https://github.com/Harrix/Standard-Genetic-Algorithm)
 
-Файл распространяется по лицензии [Apache License, Version 2.0](../master/LICENSE.txt).
+Файл распространяется по лицензии [Apache License, Version 2.0](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/LICENSE.txt).
 
-Сам стандарт находится в файле [**_Standard-Genetic-Algorithm.pdf**](../master/_Standard-Genetic-Algorithm.pdf).
+Сам стандарт находится в файле [**_Standard-Genetic-Algorithm.pdf**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/_Standard-Genetic-Algorithm.pdf).
 
 Прямая ссылка на скачивание: [**_Standard-Genetic-Algorithm.pdf**](https://raw.github.com/Harrix/Standard-Genetic-Algorithm/master/_Standard-Genetic-Algorithm.pdf).
 
@@ -18,47 +18,47 @@ https://github.com/Harrix/Standard-Genetic-Algorithm
 Установка
 ---------
 
-Прочитать подробно об установке можно тут http://blog.harrix.org/?p=1220.
+Прочитать подробно об установке можно тут [http://blog.harrix.org/?p=1220](http://blog.harrix.org/?p=1220).
 
 Про структуру проекта
 ---------------------
 
-Файл [**_Standard-Genetic-Algorithm.pdf**](../master/_Standard-Genetic-Algorithm.pdf) - это непосредственно сам документ "Генетический алгоритм. Стандарт".
+Файл [**_Standard-Genetic-Algorithm.pdf**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/_Standard-Genetic-Algorithm.pdf) - это непосредственно сам документ "Генетический алгоритм. Стандарт".
 
 В корневой папке находятся три папки. 
 
-В папке [**Source**](../master/Source) располагаются файлы непосредственно документа, где находится файл [**_Standard-Genetic-Algorithm.tex**](../master/Source/_Standard-Genetic-Algorithm.tex) (это исходник pdf документа) и файлы, которые являются вызываемыми или вспомогательными для [**_Standard-Genetic-Algorithm.tex**](../master/Source/_Standard-Genetic-Algorithm.tex).
+В папке [**Source**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/Source) располагаются файлы непосредственно документа, где находится файл [**_Standard-Genetic-Algorithm.tex**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/Source/_Standard-Genetic-Algorithm.tex) (это исходник pdf документа) и файлы, которые являются вызываемыми или вспомогательными для [**_Standard-Genetic-Algorithm.tex**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/Source/_Standard-Genetic-Algorithm.tex).
 
-В папке [**WorkingFiles**](../master/WorkingFiles) располагаются исходники рисунков из папки [**images**](../master/Source/images) для документа. 
+В папке [**WorkingFiles**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/WorkingFiles) располагаются исходники рисунков из папки [**images**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/Source/images) для документа. 
 
-В папке [**images**](../master/images) находятся служебные рисунки для отображения в этом файле.
+В папке [**images**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/images) находятся служебные рисунки для отображения в этом файле.
 
 Скриншот страниц документа
 --------------------------
 
-![alt text](../master/images/contents.png "Оглавление")
+![alt text](https://raw.github.com/Harrix/Standard-Genetic-Algorithm/master/images/contents.png "Оглавление")
 
-![alt text](../master/images/scheme.png "Схема работы ГА]")
+![alt text](https://raw.github.com/Harrix/Standard-Genetic-Algorithm/master/images/scheme.png "Схема работы ГА]")
 
 Сведения для редактирования файлов
 ----------------------------------
 
 Для полноценной работы редактированию LaTeX документа вам потребуются программа для компиляции \*.tex документов в \*.pdf. Автор использует для этого связку [MiKTex](http://www.miktex.org/) и [TeXstudio](http://texstudio.sourceforge.net/). 
 
-В варианте, который использует автор, в \*.tex файлах справок для отображения русских букв используется модуль pscyr. Об его установке можно прочитать (и скачать) в статье http://blog.harrix.org/?p=444.
+В варианте, который использует автор, в \*.tex файлах справок для отображения русских букв используется модуль pscyr. Об его установке можно прочитать (и скачать) в статье [http://blog.harrix.org/?p=444](http://blog.harrix.org/?p=444).
 
-Подробное описание установки и настройки связки MiKTeX + TeXstudio + pscyr можно прочитать в статье http://blog.harrix.org/?p=849.
+Подробное описание установки и настройки связки MiKTeX + TeXstudio + pscyr можно прочитать в статье [http://blog.harrix.org/?p=849](http://blog.harrix.org/?p=849).
 
 Использованные технологии
 -------------------------
 
-- [LaTeX](http://ru.wikipedia.org/wiki/LaTeX), [MiKTeX](http://miktex.org/), [BiBTex](http://ru.wikipedia.org/wiki/BibTeX), [TeXstudio](http://texstudio.sourceforge.net/), [PSCyr](http://blog.harrix.org/?p=444).
+- [LaTeX](http://ru.wikipedia.org/wiki/LaTeX), [MiKTeX](http://miktex.org/), [BiBTex](http://ru.wikipedia.org/wiki/BibTeX), [TeXstudio](http://texstudio.sourceforge.net/), [PSCyr]([http://blog.harrix.org/?p=444](http://blog.harrix.org/?p=444)).
 - [HarrixLaTeXDocumentTemplate](https://github.com/Harrix/HarrixLaTeXDocumentTemplate).
 
 История проекта
 ---------------
 
-Подробный список изменений в файле [CHANGELOG.md](../master/CHANGELOG.md).
+Подробный список изменений в файле [CHANGELOG.md](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/CHANGELOG.md).
 
 Контакты
 --------
