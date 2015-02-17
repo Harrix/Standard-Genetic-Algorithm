@@ -1,0 +1,13 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: _Standard-Genetic-Algorithm.aux
+The style file: utf8gost71u.bst
+Illegal, another \bibstyle command---line 170 of file _Standard-Genetic-Algorithm.aux
+ : \bibstyle
+ :          {utf8gost71u}
+I'm skipping whatever remains of this command
+Database file #1: biblio.bib
+I was expecting a `,' or a `}'---line 189 of file biblio.bib
+ :    
+ :    author={Паклин, Н.},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+(There were 2 error messages)
