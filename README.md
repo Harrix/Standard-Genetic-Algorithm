@@ -3,7 +3,7 @@ Standard-Genetic-Algorithm
 
 Версия 3.12
 
-Генетический алгоритм. Стандарт.
+Генетический алгоритм. Стандарт
 
 [https://github.com/Harrix/Standard-Genetic-Algorithm](https://github.com/Harrix/Standard-Genetic-Algorithm)
 
