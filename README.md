@@ -7,7 +7,7 @@ Standard-Genetic-Algorithm
 
 [https://github.com/Harrix/Standard-Genetic-Algorithm](https://github.com/Harrix/Standard-Genetic-Algorithm)
 
-Файл распространяется по лицензии [MIT](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/LICENSE).
+Файл распространяется по лицензии [MIT](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/LICENSE.md).
 
 Сам стандарт находится в файле [**_Standard-Genetic-Algorithm.pdf**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/_Standard-Genetic-Algorithm.pdf).
 
