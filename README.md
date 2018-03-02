@@ -1,5 +1,4 @@
-Standard-Genetic-Algorithm
-==========================
+# Standard-Genetic-Algorithm
 
 Версия 3.12
 
@@ -15,13 +14,11 @@ Standard-Genetic-Algorithm
 
 На данный момент генетический алгоритм (ГА) является одним из наиболее исследуемых и развивающихся алгоритмов глобальной оптимизации. К сожалению, до сих пор, по крайней мере, в российской литературе, строго описания алгоритма автором не встречалось. Обычно даны лишь общие рекомендации, которые допускают разночтение в процессе программирования. Либо предложенные схемы применимы лишь для решения тестовых задач. Из-за этого невозможно строго сопоставить друг другу различные исследования по эффективности алгоритмов. Как сказал один из исследователей: «Количество различных эволюционных алгоритмов совпадает с количеством исследователей, работающих в данной области!» Данная работа призвана определить некий стандарт генетического алгоритма (далее Стандарт).
 
-Установка
----------
+## Установка
 
 Прочитать подробно об установке можно тут [http://blog.harrix.org/?p=1220](http://blog.harrix.org/?p=1220).
 
-Про структуру проекта
----------------------
+## Про структуру проекта
 
 Файл [**_Standard-Genetic-Algorithm.pdf**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/_Standard-Genetic-Algorithm.pdf) - это непосредственно сам документ "Генетический алгоритм. Стандарт".
 
@@ -33,15 +30,13 @@ Standard-Genetic-Algorithm
 
 В папке [**images**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/images) находятся служебные рисунки для отображения в этом файле.
 
-Скриншот страниц документа
---------------------------
+## Скриншот страниц документа
 
 ![alt text](https://raw.github.com/Harrix/Standard-Genetic-Algorithm/master/images/contents.png "Оглавление")
 
 ![alt text](https://raw.github.com/Harrix/Standard-Genetic-Algorithm/master/images/scheme.png "Схема работы ГА]")
 
-Сведения для редактирования файлов
-----------------------------------
+## Сведения для редактирования файлов
 
 Для полноценной работы редактированию LaTeX документа вам потребуются программа для компиляции \*.tex документов в \*.pdf. Автор использует для этого связку [MiKTex](http://www.miktex.org/) и [TeXstudio](http://texstudio.sourceforge.net/). 
 
@@ -49,19 +44,16 @@ Standard-Genetic-Algorithm
 
 Подробное описание установки и настройки связки MiKTeX + TeXstudio + pscyr можно прочитать в статье [http://blog.harrix.org/?p=849](http://blog.harrix.org/?p=849).
 
-Использованные технологии
--------------------------
+## Использованные технологии
 
 - [LaTeX](http://ru.wikipedia.org/wiki/LaTeX), [MiKTeX](http://miktex.org/), [BiBTex](http://ru.wikipedia.org/wiki/BibTeX), [TeXstudio](http://texstudio.sourceforge.net/), [PSCyr]([http://blog.harrix.org/?p=444](http://blog.harrix.org/?p=444)).
 - [HarrixLaTeXDocumentTemplate](https://github.com/Harrix/HarrixLaTeXDocumentTemplate).
 
-История проекта
----------------
+## История проекта
 
 Подробный список изменений в файле [CHANGELOG.md](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/CHANGELOG.md).
 
-Контакты
---------
+## Контакты
 
 Автор: Сергиенко Антон Борисович.
 
