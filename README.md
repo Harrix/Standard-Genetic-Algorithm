@@ -6,7 +6,7 @@
 
 [https://github.com/Harrix/Standard-Genetic-Algorithm](https://github.com/Harrix/Standard-Genetic-Algorithm)
 
-Файл распространяется по лицензии [MIT](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/LICENSE.md).
+Файл распространяется по лицензии [CC BY 4.0](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/LICENSE.md).
 
 Сам стандарт находится в файле [**_Standard-Genetic-Algorithm.pdf**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/_Standard-Genetic-Algorithm.pdf).
 
@@ -22,11 +22,11 @@
 
 Файл [**_Standard-Genetic-Algorithm.pdf**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/_Standard-Genetic-Algorithm.pdf) - это непосредственно сам документ "Генетический алгоритм. Стандарт".
 
-В корневой папке находятся три папки. 
+В корневой папке находятся три папки.
 
 В папке [**Source**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/Source) располагаются файлы непосредственно документа, где находится файл [**_Standard-Genetic-Algorithm.tex**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/Source/_Standard-Genetic-Algorithm.tex) (это исходник pdf документа) и файлы, которые являются вызываемыми или вспомогательными для [**_Standard-Genetic-Algorithm.tex**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/Source/_Standard-Genetic-Algorithm.tex).
 
-В папке [**WorkingFiles**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/WorkingFiles) располагаются исходники рисунков из папки [**images**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/Source/images) для документа. 
+В папке [**WorkingFiles**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/WorkingFiles) располагаются исходники рисунков из папки [**images**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/Source/images) для документа.
 
 В папке [**images**](https://github.com/Harrix/Standard-Genetic-Algorithm/blob/master/images) находятся служебные рисунки для отображения в этом файле.
 
@@ -38,7 +38,7 @@
 
 ## Сведения для редактирования файлов
 
-Для полноценной работы редактированию LaTeX документа вам потребуются программа для компиляции \*.tex документов в \*.pdf. Автор использует для этого связку [MiKTex](http://www.miktex.org/) и [TeXstudio](http://texstudio.sourceforge.net/). 
+Для полноценной работы редактированию LaTeX документа вам потребуются программа для компиляции \*.tex документов в \*.pdf. Автор использует для этого связку [MiKTex](http://www.miktex.org/) и [TeXstudio](http://texstudio.sourceforge.net/).
 
 В варианте, который использует автор, в \*.tex файлах справок для отображения русских букв используется модуль pscyr. Об его установке можно прочитать (и скачать) в статье [http://blog.harrix.org/?p=444](http://blog.harrix.org/?p=444).
 
